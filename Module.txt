@@ -1,8 +1,8 @@
-﻿Name: Skywalker.WebShop
+﻿Name: Salween.WebShop
 AntiForgery: enabled
-Author: Sipke Schoorstra
-Website: http://skywalkersoftwaredevelopment.net
+Author: Note, following Sipke Schoorstra
+Website: http://webshopworkshop.salween.com
 Version: 1.0
-OrchardVersion: 1.9
+OrchardVersion: 1.10.2
 Description: Orchard Webshop Module Demo
 Category: Webshop
