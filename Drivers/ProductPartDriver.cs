@@ -20,6 +20,14 @@ namespace Orchard.Webshop.Drivers
             }
         }
 
+        protected override DriverResult Display(ProductPart part, string displayType, dynamic shapeHelper)
+        {
+            return ContentShape("Parts_Product", () => shapeHelper.Parts_Product(
+                    Price: part.Price,
+                    Sku: part.Sku
+                ));
+        }
+
         // Display the editor for ProductPart
         protected override DriverResult Editor(ProductPart part, dynamic shapeHelper)
         {
