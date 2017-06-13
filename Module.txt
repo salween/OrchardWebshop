@@ -1,4 +1,4 @@
-﻿Name: Skywalker.WebShop
+﻿Name: Orchard.WebShop
 AntiForgery: enabled
 Author: Sipke Schoorstra
 Website: http://skywalkersoftwaredevelopment.net
