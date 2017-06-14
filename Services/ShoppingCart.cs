@@ -77,6 +77,26 @@ namespace Orchard.Webshop.Services
             return _contentManager.Get<ProductPart>(productId);
         }
 
+        public IEnumerable<ProductQuantity> GetProducts()
+        {
+            // Get a list of all product IDs from the shopping cart
+            var ids = Items.Select(x => x.ProductId).ToList();
+
+            // Load all product parts by the list of IDs
+            var productParts = _contentManager.GetMany<ProductPart>(ids, VersionOptions.Latest, QueryHints.Empty).ToArray();
+
+            // Create a LINQ query that projects all items in the shopping cart into shapes
+            var query = from item in Items
+                        from productPart in productParts
+                        where productPart.Id == item.ProductId
+                        select new ProductQuantity {
+                            ProductPart = productPart,
+                            Quantity = item.Quantity
+                        };
+
+            return query;
+        }
+
         public void UpdateItems()
         {
             ItemsInternal.RemoveAll(x => x.Quantity == 0);
