@@ -9,6 +9,7 @@ using Orchard.Mvc;
 using Orchard.Themes;
 using Orchard.Webshop.Models;
 using Orchard.Webshop.Services;
+using Orchard.Webshop.ViewModels;
 
 namespace Orchard.Webshop.Controllers
 {
@@ -51,6 +52,39 @@ namespace Orchard.Webshop.Controllers
             // Return a ShapeResult. This is more opitmal because it can be override
             // with themes as shape alternatives
             return new ShapeResult(this, shape);
+        }
+
+        public ActionResult Update(string command, UpdateShoppingCartItemViewModel[] items)
+        {
+            // Loop through each posted item
+            foreach (var item in items)
+            {
+                // Select the shopping cart item by posted product ID
+                var shoppingCartItem = _shoppingCart.Items.SingleOrDefault(x => x.ProductId == item.ProductId);
+
+                if(shoppingCartItem != null)
+                {
+                    // Update the quantity of the shoppingcart item. If IsRemoved == true, set the quantity to 0
+                    shoppingCartItem.Quantity = item.IsRemoved ? 0 : item.Quantity < 0 ? 0 : item.Quantity;
+                }
+            }
+
+            // Update the shopping cart so that items with 0 quantity will be removed
+            _shoppingCart.UpdateItems();
+
+            // Return an action result based ont he specified command
+            switch (command)
+            {
+                case "Checkout":
+                    break;
+                case "ContinueShopping":
+                    break;
+                case "Update":
+                    break;
+            }
+
+            // Return to Index if no command was specified
+            return RedirectToAction("Index");
         }
     }
 }

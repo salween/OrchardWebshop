@@ -9,51 +9,64 @@
     var total = (decimal)Model.Total;
 }
 <article class="shoppingcart">
-    <table>
-        <thead>
-            <tr>
-                <td>Article</td>
-                <td class="numeric">Quantity</td>
-                <td class="numeric">Price</td>
-                <td></td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach(var item in items)
-            {
-                var product = item.ProductPart;
-                var title = item.Title;
-                var quantity = item.Quantity;
+    @using (Html.BeginFormAntiForgeryPost(Url.Action("Update", "ShoppingCart", new { area = "Orchard.Webshop" })))
+    {
+        <table>
+            <thead>
                 <tr>
-                    <td>@title</td>
-                    <td class="numeric"><input type="number" value="@quantity" /></td>
-                    <td class="numeric">@product.Price.ToString("c")</td>
-                    <td class="action"><a class="icon delete" href="#"></a></td>
+                    <td>Article</td>
+                    <td class="numeric">Price</td>
+                    <td class="numeric">Quantity</td>
+                    <td class="numeric">Total Price</td>
+                    <td class="action"></td>
                 </tr>
-            }
-        </tbody>
-        <tfoot>
-            <tr class="separator"><td colspan="4">&nbsp;</td></tr>
-            <tr>
-                <td class="numeric label" colspan="2">Subtotal:</td>
-                <td class="numeric">@subtotal.ToString("c")</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td class="numeric label" colspan="2">VAT (19%):</td>
-                <td class="numeric">@vat.ToString("c")</td>
-            </tr>
-            <tr>
-                <td class="numeric label" colspan="2">Total:</td>
-                <td class="numeric">@total.ToString("c")</td>
-                <td></td>
-            </tr>
-        </tfoot>
-    </table>
-    <footer>
-        <div class="group">
-            <div class="align left"><a class="button" href="#">Continue shopping</a></div>
-            <div class="align right"><a class="button next" href="#">Proceed to checkout</a></div>
-        </div>
-    </footer>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < items.Count; i++)
+                {
+                    var item = item[i];
+                    var product = (ProductPart)item.ProductPart;
+                    var title = item.Title ?? "(no routepart attached)";
+                    var quantity = (int)item.Quantity;
+                    var unitPrice = product.Price;
+                    var totalPrice = quantity * unitPrice;
+                    <tr>
+                        <td>@title</td>
+                        <td class="numeric">@unitPrice.ToString("c")</td>
+                        <td class="numeric">@product.Price.ToString("c")</td>
+                        <td class="numeric">
+                            <input name="@string.Format("items[{0}].ProductId", i)" type="hidden" value="@product.Id" />
+                            <input name="@string.Format("items[{0}].IsRemoved", i)" type="hidden" value="false" />
+                            <input name="@string.Format("items[{0}].Quantity", i)" type="hidden" value="@quantity" />
+                        </td>
+                        <td class="numeric">@totalPrice.ToString("c")</td>
+                        <td class="action"><a class="icon delete" href="#"></a></td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr class="separator"><td colspan="4">&nbsp;</td></tr>
+                <tr>
+                    <td class="numeric label" colspan="3">Subtotal:</td>
+                    <td class="numeric">@subtotal.ToString("c")</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="numeric label" colspan="3">VAT (19%):</td>
+                    <td class="numeric">@vat.ToString("c")</td>
+                </tr>
+                <tr>
+                    <td class="numeric label" colspan="3">Total:</td>
+                    <td class="numeric">@total.ToString("c")</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+        <footer>
+            <div class="group">
+                <div class="align left"><button type="submit" name="command" value="ContinueShopping">Continue shopping</button></div>
+                <div class="align right"><button type="submit" name="command" value="Checkout">Proceed to checkout</button></div>
+            </div>
+        </footer>
+    }
 </article>

@@ -35,3 +35,7 @@ article.shoppingcart td.numeric {
 article.shoppingcart td.numeric input {
     width: 50px;
 }
+
+article.shoppingcart td.update {
+    text-align: right;
+}
