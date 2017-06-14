@@ -35,6 +35,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
@@ -61,13 +62,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Drivers\ProductPartDriver.cs" />
     <Compile Include="Filters\ProductPartFilter.cs" />
     <Compile Include="Handlers\ProductPartHandler.cs" />
     <Compile Include="Migrations.cs" />
     <Compile Include="Models\ProductPart.cs" />
     <Compile Include="Models\ProductPartRecord.cs" />
+    <Compile Include="Models\ShoppingCartItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IShoppingCart.cs" />
+    <Compile Include="Services\ShoppingCart.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Module.txt" />
@@ -93,7 +98,9 @@
     <None Include="App.Config" />
     <None Include="Placement.info" />
     <None Include="Views\EditorTemplates\Parts\Product.cshtml" />
+    <None Include="Views\Parts\Product.AddButton.cshtml" />
     <None Include="Views\Parts\Product.cshtml" />
+    <None Include="Views\ShoppingCart.cshtml" />
     <None Include="web.config" />
   </ItemGroup>
   <ItemGroup />
