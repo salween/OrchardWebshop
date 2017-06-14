@@ -1,4 +1,5 @@
 ﻿<Placement>
 	<Place Parts_Product_Edit="Content:1" />
 	<Place Parts_Product="Content:0" />
+	<Place Parts_Product_AddButton="Content:after" />
 </Placement>
