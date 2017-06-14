@@ -71,11 +71,15 @@
     <Compile Include="Models\ProductPartRecord.cs" />
     <Compile Include="Models\ShoppingCartItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceManifest.cs" />
     <Compile Include="Services\IShoppingCart.cs" />
     <Compile Include="Services\ShoppingCart.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\sprites.png" />
     <Content Include="Module.txt" />
+    <Content Include="Styles\common.css" />
+    <Content Include="Styles\shoppingcart.css" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -96,7 +100,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <None Include="Images\web.config" />
     <None Include="Placement.info" />
+    <None Include="Styles\web.config" />
     <None Include="Views\EditorTemplates\Parts\Product.cshtml" />
     <None Include="Views\Parts\Product.AddButton.cshtml" />
     <None Include="Views\Parts\Product.cshtml" />

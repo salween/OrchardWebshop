@@ -1,0 +1,30 @@
+﻿.group .align.left {
+    float: left;
+}
+
+.group .align.right {
+    float: right;
+}
+
+.icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url("../images/sprites.png");
+}
+
+.icon.edit {
+    background-position: -8px -40px;
+}
+
+.icon.edit:hover {
+    background-position: -40px -40px;
+}
+
+.icon.delete {
+    background-position: -8px -7px;
+}
+
+.icon.delete:hover {
+    background-position: -39px -7px;
+}
