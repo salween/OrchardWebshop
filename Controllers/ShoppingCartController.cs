@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Orchard.Mvc;
+using Orchard.Themes;
 using Orchard.Webshop.Services;
 
 namespace Orchard.Webshop.Controllers
@@ -30,6 +31,7 @@ namespace Orchard.Webshop.Controllers
             return RedirectToAction("Index");
         }
 
+        [Themed]
         public ActionResult Index()
         {
             // Create a new shape using the "New" property of IOrchardServices
