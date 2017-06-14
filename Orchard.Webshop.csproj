@@ -75,6 +75,7 @@
     <Compile Include="ResourceManifest.cs" />
     <Compile Include="Services\IShoppingCart.cs" />
     <Compile Include="Services\ShoppingCart.cs" />
+    <Compile Include="ViewModels\UpdateShoppingCartItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\sprites.png" />
