@@ -38,7 +38,11 @@ namespace Orchard.Webshop.Controllers
         {
             // Create a new shape using the "New" property of IOrchardServices
             var shape = _services.New.ShoppingCart(
-                Products: _shoppingCart.GetProducts().ToList(),
+                Products: _shoppingCart.GetProducts().Select(p => _services.New.ShoppingCartItem(
+                    ProductPart: p.ProductPart,
+                    Quantity: p.Quantity,
+                    Title: _services.ContentManager.GetItemMetadata(p.ProductPart).DisplayText)
+                ).ToList(),
                 Total: _shoppingCart.Total(),
                 Subtotal: _shoppingCart.Subtotal(),
                 Vat: _shoppingCart.Vat()

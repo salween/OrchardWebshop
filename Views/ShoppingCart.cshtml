@@ -1,5 +1,12 @@
-﻿@{ 
+﻿@using Orchard.ContentManagement
+@using Orchard.Core.Title.Models
+@using Orchard.Webshop.Models
+@{ 
     Style.Require("Orchard.Webshop.ShoppingCart");
+    var items = (IList<dynamic>)Model.Products;
+    var subtotal = (decimal)Model.Subtotal;
+    var vat = (decimal)Model.Vat;
+    var total = (decimal)Model.Total;
 }
 <article class="shoppingcart">
     <table>
@@ -12,24 +19,33 @@
             </tr>
         </thead>
         <tbody>
-            @for (var i = 0; i < 5; i++)
+            @foreach(var item in items)
             {
+                var product = item.ProductPart;
+                var title = item.Title;
+                var quantity = item.Quantity;
                 <tr>
-                    <td>Product title</td>
-                    <td class="numeric"><input type="number" value="1" /></td>
-                    <td><a class="icon delete" href="#"></a></td>
+                    <td>@title</td>
+                    <td class="numeric"><input type="number" value="@quantity" /></td>
+                    <td class="numeric">@product.Price.ToString("c")</td>
+                    <td class="action"><a class="icon delete" href="#"></a></td>
                 </tr>
             }
         </tbody>
         <tfoot>
             <tr class="separator"><td colspan="4">&nbsp;</td></tr>
             <tr>
+                <td class="numeric label" colspan="2">Subtotal:</td>
+                <td class="numeric">@subtotal.ToString("c")</td>
+                <td></td>
+            </tr>
+            <tr>
                 <td class="numeric label" colspan="2">VAT (19%):</td>
-                <td class="numeric">$9.99</td>
+                <td class="numeric">@vat.ToString("c")</td>
             </tr>
             <tr>
                 <td class="numeric label" colspan="2">Total:</td>
-                <td class="numeric">$9.99</td>
+                <td class="numeric">@total.ToString("c")</td>
                 <td></td>
             </tr>
         </tfoot>
