@@ -15,6 +15,9 @@ namespace Orchard.Webshop
             // Define the "shoppingcart" style sheet
             manifest.DefineStyle("Orchard.Webshop.ShoppingCart").SetUrl("shoppingcart.css").SetDependencies("Orchard.Webshop.Common");
 
+            // Define the "shoppingcartwidget" style sheet
+            manifest.DefineStyle("Orchard.Webshop.ShoppingCartWidget").SetUrl("shoppingcartwidget.css").SetDependencies("Orchard.Webshop.Common");
+
             // Defined the "shoppingcart" script and set a dependency on the jQuery" resource
             manifest.DefineScript("Orchard.Webshop.ShoppingCart").SetUrl("shoppingcart.js").SetDependencies("jQuery");
         }

@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Drivers\ProductPartDriver.cs" />
+    <Compile Include="Drivers\ShoppingCartWidgetPartDriver.cs" />
     <Compile Include="Filters\ProductPartFilter.cs" />
     <Compile Include="Handlers\ProductPartHandler.cs" />
     <Compile Include="Migrations.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Models\ProductPartRecord.cs" />
     <Compile Include="Models\ProductQuantity.cs" />
     <Compile Include="Models\ShoppingCartItem.cs" />
+    <Compile Include="Models\ShoppingCartWidgetPart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceManifest.cs" />
     <Compile Include="Services\IShoppingCart.cs" />
@@ -83,6 +85,7 @@
     <Content Include="Scripts\ShoppingCart.js" />
     <Content Include="Styles\common.css" />
     <Content Include="Styles\shoppingcart.css" />
+    <Content Include="Styles\shoppingcartwidget.css" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
@@ -110,6 +113,7 @@
     <None Include="Views\EditorTemplates\Parts\Product.cshtml" />
     <None Include="Views\Parts\Product.AddButton.cshtml" />
     <None Include="Views\Parts\Product.cshtml" />
+    <None Include="Views\Parts\ShoppingCartWidget.cshtml" />
     <None Include="Views\ShoppingCart.cshtml" />
     <None Include="web.config" />
   </ItemGroup>

@@ -17,7 +17,24 @@ namespace Orchard.Webshop
                 .Column<string>("Sku", column => column.WithLength(50))
                 );
             // Return the version that this feature will be after this method completes
-            return 1;
+
+            // From Update 1
+            ContentDefinitionManager.AlterPartDefinition("ProductPart", part => part
+                .Attachable()
+            );
+
+            // From Update 2
+            ContentDefinitionManager.AlterTypeDefinition("ShoppingCartWidget", type => type
+                .WithPart("ShoppingCartWidgetPart")
+                .WithPart("WidgetPart")
+                .WithSetting("Stereotype", "Widget")
+            );
+
+            // From Update 3
+            ContentDefinitionManager.AlterTypeDefinition("ShoppingCartWidget", type => type
+                .WithPart("CommonPart")
+            );
+            return 4;
         }
 
         public int UpdateFrom1()
@@ -31,6 +48,30 @@ namespace Orchard.Webshop
             );
 
             return 2;
+        }
+
+        public int UpdateFrom2()
+        {
+            // Define a new content type called "ShoppingCartWidget"
+            ContentDefinitionManager.AlterTypeDefinition("ShoppingCartWidget", type => type
+                // Attach the "ShoppingCartWidgetPart"
+                .WithPart("ShoppingCartWidgetPart")
+                // In Order to turn this content type into a widget, it needs the widgetPart
+                .WithPart("WidgetPart")
+                // It also needs a setting called "Stereotype" to be set to "Widget"
+                .WithSetting("Stereotype", "Widget")
+            );
+            return 3;
+        }
+
+        public int UpdateFrom3()
+        {
+            // Update the SHoppingCartWidget so that it has a CommonPart attached, which is required for widgets (it's generally a good idea to have this part attached)
+            ContentDefinitionManager.AlterTypeDefinition("ShoppingCartWidget", type => type
+                .WithPart("CommonPart")
+            );
+
+            return 4;
         }
     }
 }
