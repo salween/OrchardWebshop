@@ -59,6 +59,14 @@ namespace Orchard.Webshop.Services
             }
         }
 
+        public void AddRange(IEnumerable<ShoppingCartItem> items)
+        {
+            foreach(var item in items)
+            {
+                Add(item.ProductId, item.Quantity);
+            }
+        }
+
         public void Remove(int productId)
         {
             var item = Items.SingleOrDefault(x => x.ProductId == productId);
@@ -119,7 +127,7 @@ namespace Orchard.Webshop.Services
             return Items.Sum(x => x.Quantity);
         }
 
-        private void Clear()
+        public void Clear()
         {
             ItemsInternal.Clear();
             UpdateItems();

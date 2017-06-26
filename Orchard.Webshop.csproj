@@ -82,7 +82,7 @@
   <ItemGroup>
     <Content Include="Images\sprites.png" />
     <Content Include="Module.txt" />
-    <Content Include="Scripts\ShoppingCart.js" />
+    <Content Include="Scripts\shoppingcart.js" />
     <Content Include="Styles\common.css" />
     <Content Include="Styles\shoppingcart.css" />
     <Content Include="Styles\shoppingcartwidget.css" />

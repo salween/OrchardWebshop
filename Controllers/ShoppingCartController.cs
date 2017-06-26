@@ -1,7 +1,10 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Orchard.Mvc;
 using Orchard.Themes;
+using Orchard.Webshop.Models;
 using Orchard.Webshop.Services;
 using Orchard.Webshop.ViewModels;
 
@@ -48,23 +51,13 @@ namespace Orchard.Webshop.Controllers
             return new ShapeResult(this, shape);
         }
 
+        [HttpPost]
         public ActionResult Update(string command, UpdateShoppingCartItemViewModel[] items)
         {
-            // Loop through each posted item
-            foreach (var item in items)
-            {
-                // Select the shopping cart item by posted product ID
-                var shoppingCartItem = _shoppingCart.Items.SingleOrDefault(x => x.ProductId == item.ProductId);
+            UpdateShoppingCart(items);
 
-                if(shoppingCartItem != null)
-                {
-                    // Update the quantity of the shoppingcart item. If IsRemoved == true, set the quantity to 0
-                    shoppingCartItem.Quantity = item.IsRemoved ? 0 : item.Quantity < 0 ? 0 : item.Quantity;
-                }
-            }
-
-            // Update the shopping cart so that items with 0 quantity will be removed
-            _shoppingCart.UpdateItems();
+            if (Request.IsAjaxRequest())
+                return Json(true);
 
             // Return an action result based ont he specified command
             switch (command)
@@ -79,6 +72,41 @@ namespace Orchard.Webshop.Controllers
 
             // Return to Index if no command was specified
             return RedirectToAction("Index");
+        }
+
+        public ActionResult GetItems()
+        {
+            var products = _shoppingCart.GetProducts();
+
+            var json = new
+            {
+                items = (from item in products
+                         select new
+                         {
+                             id = item.ProductPart.Id,
+                             title = _services.ContentManager.GetItemMetadata(item.ProductPart).DisplayText ?? "(No TitlePart attached)",
+                             unitPrice = item.ProductPart.Price,
+                             quantity = item.Quantity
+                         }
+                ).ToArray()
+            };
+
+            return Json(json, JsonRequestBehavior.AllowGet);
+        }
+
+        private void UpdateShoppingCart(IEnumerable<UpdateShoppingCartItemViewModel> items)
+        {
+            _shoppingCart.Clear();
+
+            if (items == null)
+                return;
+
+            _shoppingCart.AddRange(items
+                .Where(item => !item.IsRemoved)
+                .Select(item => new ShoppingCartItem(item.ProductId, item.Quantity < 0 ? 0 : item.Quantity))
+                );
+
+            _shoppingCart.UpdateItems();
         }
     }
 }

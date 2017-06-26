@@ -1,6 +1,6 @@
 ﻿@{ 
     var productId = (int)Model.ProductId;
 }
-@using (Html.BeginForm("Add", "ShoppingCart", new { id = productId, area = "Orchard.Webshop" })) {
+@using (Html.BeginFormAntiForgeryPost(Url.Action("Add", "ShoppingCart", new { id = productId, area = "Orchard.Webshop" }))) {
     <button type="submit">@T("Add to shoppingcart")</button>
 }
