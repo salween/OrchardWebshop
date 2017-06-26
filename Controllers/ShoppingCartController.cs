@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using System.Web.Mvc;
-using Orchard.ContentManagement;
 using Orchard.Mvc;
 using Orchard.Themes;
-using Orchard.Webshop.Models;
 using Orchard.Webshop.Services;
 using Orchard.Webshop.ViewModels;
 

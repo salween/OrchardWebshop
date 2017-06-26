@@ -80,6 +80,7 @@
   <ItemGroup>
     <Content Include="Images\sprites.png" />
     <Content Include="Module.txt" />
+    <Content Include="Scripts\ShoppingCart.js" />
     <Content Include="Styles\common.css" />
     <Content Include="Styles\shoppingcart.css" />
   </ItemGroup>
@@ -104,6 +105,7 @@
     <None Include="App.Config" />
     <None Include="Images\web.config" />
     <None Include="Placement.info" />
+    <None Include="Scripts\web.config" />
     <None Include="Styles\web.config" />
     <None Include="Views\EditorTemplates\Parts\Product.cshtml" />
     <None Include="Views\Parts\Product.AddButton.cshtml" />

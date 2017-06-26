@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Orchard.Localization;
+﻿using Orchard.Localization;
 using Orchard.Projections.Descriptors.Filter;
 using Orchard.Projections.Services;
 using Orchard.Webshop.Models;
