@@ -1,0 +1,18 @@
+﻿@model Orchard.Webshop.Models.CustomerPart
+
+<fieldset>
+    <div class="editor-label">@Html.LabelFor(x => x.Title)</div>
+    <div class="editor-label">@Html.LabelFor(x => x.Title)</div>
+
+    <div class="editor-label">@Html.LabelFor(x => x.FirstName)</div>
+    <div class="editor-field">
+        @Html.EditorFor(x => x.FirstName)
+        @Html.ValidationMessageFor(x => x.FirstName)
+    </div>
+
+    <div class="editor-label">@Html.LabelFor(x => x.LastName)</div>
+    <div class="editor-field">
+        @Html.EditorFor(x => x.LastName)
+        @Html.ValidationMessageFor(x => x.LastName)
+    </div>
+</fieldset>

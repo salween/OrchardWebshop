@@ -63,11 +63,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ShoppingCartController.cs" />
+    <Compile Include="Drivers\AddressPartDriver.cs" />
+    <Compile Include="Drivers\CustomerPartDriver.cs" />
     <Compile Include="Drivers\ProductPartDriver.cs" />
     <Compile Include="Drivers\ShoppingCartWidgetPartDriver.cs" />
     <Compile Include="Filters\ProductPartFilter.cs" />
+    <Compile Include="Handlers\AddressPartHandler.cs" />
+    <Compile Include="Handlers\CustomerPartHandler.cs" />
     <Compile Include="Handlers\ProductPartHandler.cs" />
     <Compile Include="Migrations.cs" />
+    <Compile Include="Models\AddressPart.cs" />
+    <Compile Include="Models\AddressPartRecord.cs" />
+    <Compile Include="Models\CustomerPart.cs" />
+    <Compile Include="Models\CustomerPartRecord.cs" />
     <Compile Include="Models\ProductPart.cs" />
     <Compile Include="Models\ProductPartRecord.cs" />
     <Compile Include="Models\ProductQuantity.cs" />
@@ -100,6 +108,10 @@
       <Project>{5531e894-d259-45a3-aa61-26dbe720c1ce}</Project>
       <Name>Orchard.Projections</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Orchard.Users\Orchard.Users.csproj">
+      <Project>{79AED36E-ABD0-4747-93D3-8722B042454B}</Project>
+      <Name>Orchard.Users</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
@@ -110,6 +122,8 @@
     <None Include="Placement.info" />
     <None Include="Scripts\web.config" />
     <None Include="Styles\web.config" />
+    <None Include="Views\EditorTemplates\Parts\Address.cshtml" />
+    <None Include="Views\EditorTemplates\Parts\Customer.cshtml" />
     <None Include="Views\EditorTemplates\Parts\Product.cshtml" />
     <None Include="Views\Parts\Product.AddButton.cshtml" />
     <None Include="Views\Parts\Product.cshtml" />

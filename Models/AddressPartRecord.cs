@@ -1,8 +1,8 @@
-﻿using Orchard.ContentManagement;
+﻿using Orchard.ContentManagement.Records;
 
 namespace Orchard.Webshop.Models
 {
-    public class AddressPartRecord : ContentPart
+    public class AddressPartRecord : ContentPartRecord
     {
         public virtual int CustomerId { get; set; }
         public virtual string Type { get; set; }
