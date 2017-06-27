@@ -6,7 +6,10 @@ namespace Orchard.Webshop.Drivers
 {
     public class CustomerPartDriver : ContentPartDriver<CustomerPart>
     {
-        protected override string Prefix => "Customer";
+        protected override string Prefix
+        {
+            get { return "Customer"; }
+        }
 
         protected override DriverResult Editor(CustomerPart part, dynamic shapeHelper)
         {

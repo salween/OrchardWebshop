@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Drivers\AddressPartDriver.cs" />
     <Compile Include="Drivers\CustomerPartDriver.cs" />
@@ -122,6 +123,7 @@
     <None Include="Placement.info" />
     <None Include="Scripts\web.config" />
     <None Include="Styles\web.config" />
+    <None Include="Views\Checkout.SignupOrLogin.cshtml" />
     <None Include="Views\EditorTemplates\Parts\Address.cshtml" />
     <None Include="Views\EditorTemplates\Parts\Customer.cshtml" />
     <None Include="Views\EditorTemplates\Parts\Product.cshtml" />

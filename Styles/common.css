@@ -28,3 +28,26 @@
 .icon.delete:hover {
     background-position: -39px -7px;
 }
+
+ul.bullets li {
+    background: url("../images/bullets.png") no-repeat;
+    line-height: 30px;
+    list-style: none;
+    padding-left: 15px;
+}
+
+ul.bullets.action li {
+    background-position: 0 0;
+}
+
+ul.bullets.action li:hover {
+    background-position: 1px 0;
+}
+
+ul.bullets li a {
+    text-decoration: none;
+}
+
+ul.bullets li a:hover {
+    color: #434343;
+}

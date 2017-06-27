@@ -11,7 +11,7 @@ namespace Orchard.Webshop.Drivers
 {
     public class AddressPartDriver : ContentPartDriver<AddressPart>
     {
-        protected override string Prefix => "Address";
+        protected override string Prefix { get { return "Address"; } }
 
         protected override DriverResult Editor(AddressPart part, dynamic shapeHelper)
         {
