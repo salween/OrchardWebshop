@@ -63,7 +63,7 @@ namespace Orchard.Webshop.Controllers
             switch (command)
             {
                 case "Checkout":
-                    break;
+                    return RedirectToAction("SignupOrLogin", "Checkout");
                 case "ContinueShopping":
                     break;
                 case "Update":
