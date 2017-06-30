@@ -34,6 +34,7 @@
       <HintPath>..\..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -86,6 +87,7 @@
     <Compile Include="ResourceManifest.cs" />
     <Compile Include="Services\IShoppingCart.cs" />
     <Compile Include="Services\ShoppingCart.cs" />
+    <Compile Include="ViewModels\SignupViewModel.cs" />
     <Compile Include="ViewModels\UpdateShoppingCartItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +125,7 @@
     <None Include="Placement.info" />
     <None Include="Scripts\web.config" />
     <None Include="Styles\web.config" />
+    <None Include="Views\Checkout.Signup.cshtml" />
     <None Include="Views\Checkout.SignupOrLogin.cshtml" />
     <None Include="Views\EditorTemplates\Parts\Address.cshtml" />
     <None Include="Views\EditorTemplates\Parts\Customer.cshtml" />

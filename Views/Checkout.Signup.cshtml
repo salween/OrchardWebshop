@@ -1,0 +1,61 @@
+﻿@using Orchard.Webshop.ViewModels
+@{ 
+    var signup = (SignupViewModel)Model.Signup;
+
+    Style.Require("Orchard.Webshop.Common");
+}
+
+<h2>@T("New customer")</h2>
+<p>@T("Please fill otu the form below")</p>
+
+@Html.ValidationSummary()
+
+@using (Html.BeginFormAntiForgeryPost(UrlAuthorizationModule.Action("Signup", "Checkout", new { area = "Orchard.Webshop" })))
+{
+    <article class="form">
+        <fieldset>
+            <ul>
+                <li>
+                    <div class="field-label">@Html.LabelFor(m => signup.Title, T("Title"))</div>
+                    <div class="field-editor">@Html.EditorFor(m => signup.Title)</div>
+                </li>
+                <li>
+                    <div class="field-label">@Html.LabelFor(m => signup.FirstName, T("First Name"))</div>
+                    <div class="field-editor">@Html.EditorFor(m => signup.FirstName)</div>
+                </li>
+                <li>
+                    <div class="field-label">@Html.LabelFor(m => signup.LastName, T("Last Name"))</div>
+                    <div class="field-editor">@Html.EditorFor(m => signup.LastName)</div>
+                </li>
+            </ul>
+        </fieldset>
+
+        <fieldset>
+            <ul>
+                <li>
+                    <div class="checkbox-and-label">
+                        <div class="checkbox">@Html.CheckBoxFor(m => signup.ReceiveNewsletter)</div>
+                        <div class="label">@Html.LabelFor(m => signup.ReceiveNewsletter, T("Subscribe to our mailing list"))</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="checkbox-and-label">
+                        <div class="checkbox">@Html.CheckBoxFor(m => signup.AcceptTerms)</div>
+                        <div class="label">
+                            <label for="@Html.FieldIdFor(m => signup.AcceptTerms)">
+                                @Html.Raw(T("I have read and accept the <a href=\"{0}\" target=\"_blank\">Terms and COnditions</a>", "#").ToString())
+                            </label>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </fieldset>
+
+        <footer>
+            <ul>
+                <li class="align left"><a href="#">@T("Cancel")</a></li>
+                <li class="align right"><button type="submit">@T("Next")</button></li>
+            </ul>
+        </footer>
+    </article>
+}
