@@ -8,6 +8,7 @@ using Orchard.Localization;
 using Orchard.Mvc;
 using Orchard.Security;
 using Orchard.Themes;
+using Orchard.Webshop.ViewModels;
 
 namespace Orchard.Webshop.Controllers
 {
@@ -32,11 +33,14 @@ namespace Orchard.Webshop.Controllers
             return new ShapeResult(this, _services.New.Checkout_SignupOrLogin());
         }
 
-        [Themed]
-        public ActionResult Signup()
+        [HttpPost]
+        public ActionResult Signup(SignupViewModel signup)
         {
-            var shape = _services.New.Checkout_Signup();
-            return new ShapeResult(this, shape);
+            if (!ModelState.IsValid)
+                return new ShapeResult(this, _services.New.Checkout_Signup(Signup: signup));
+
+            // TODO: Create a new account for the customer
+            return RedirectToAction("SelectAddress");
         }
 
         [Themed]
