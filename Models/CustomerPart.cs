@@ -1,5 +1,7 @@
 ﻿using System;
 using Orchard.ContentManagement;
+using Orchard.Security;
+using Orchard.Users.Models;
 
 namespace Orchard.Webshop.Models
 {
@@ -27,6 +29,11 @@ namespace Orchard.Webshop.Models
         {
             get { return Retrieve(r => r.CreatedUtc); }
             set { Store(r => r.CreatedUtc, value); }
+        }
+
+        public IUser User
+        {
+            get { return this.As<UserPart>(); }
         }
     }
 }

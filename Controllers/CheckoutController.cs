@@ -8,6 +8,7 @@ using Orchard.Localization;
 using Orchard.Mvc;
 using Orchard.Security;
 using Orchard.Themes;
+using Orchard.Webshop.Services;
 using Orchard.Webshop.ViewModels;
 
 namespace Orchard.Webshop.Controllers
@@ -16,12 +17,14 @@ namespace Orchard.Webshop.Controllers
     {
         private readonly IOrchardServices _services;
         private readonly IAuthenticationService _authenticationService;
+        private readonly ICustomerService _customerService;
         private Localizer T { get; set; }
 
-        public CheckoutController(IOrchardServices services, IAuthenticationService authenticationService)
+        public CheckoutController(IOrchardServices services, IAuthenticationService authenticationService, ICustomerService customerService)
         {
             _authenticationService = authenticationService;
             _services = services;
+            _customerService = customerService;
         }
 
         [Themed]
@@ -39,7 +42,13 @@ namespace Orchard.Webshop.Controllers
             if (!ModelState.IsValid)
                 return new ShapeResult(this, _services.New.Checkout_Signup(Signup: signup));
 
-            // TODO: Create a new account for the customer
+            var customer = _customerService.CreateCustomer(signup.Email, signup.Password);
+            customer.FirstName = signup.FirstName;
+            customer.LastName = signup.LastName;
+            customer.Title = signup.Title;
+
+            _authenticationService.SignIn(customer.User, true);
+
             return RedirectToAction("SelectAddress");
         }
 
