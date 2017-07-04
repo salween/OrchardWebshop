@@ -89,6 +89,7 @@
     <Compile Include="Services\ICustomerService.cs" />
     <Compile Include="Services\IShoppingCart.cs" />
     <Compile Include="Services\ShoppingCart.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\SignupViewModel.cs" />
     <Compile Include="ViewModels\UpdateShoppingCartItemViewModel.cs" />
   </ItemGroup>
@@ -127,6 +128,7 @@
     <None Include="Placement.info" />
     <None Include="Scripts\web.config" />
     <None Include="Styles\web.config" />
+    <None Include="Views\Checkout.Login.cshtml" />
     <None Include="Views\Checkout.Signup.cshtml" />
     <None Include="Views\Checkout.SignupOrLogin.cshtml" />
     <None Include="Views\EditorTemplates\Parts\Address.cshtml" />

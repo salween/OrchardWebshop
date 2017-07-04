@@ -18,13 +18,15 @@ namespace Orchard.Webshop.Controllers
         private readonly IOrchardServices _services;
         private readonly IAuthenticationService _authenticationService;
         private readonly ICustomerService _customerService;
+        private readonly IMembershipService _membershipService;
         private Localizer T { get; set; }
 
-        public CheckoutController(IOrchardServices services, IAuthenticationService authenticationService, ICustomerService customerService)
+        public CheckoutController(IOrchardServices services, IAuthenticationService authenticationService, ICustomerService customerService, IMembershipService membershipService)
         {
             _authenticationService = authenticationService;
             _services = services;
             _customerService = customerService;
+            _membershipService = membershipService;
         }
 
         [Themed]
@@ -64,6 +66,32 @@ namespace Orchard.Webshop.Controllers
         {
             var shape = _services.New.Checkout_Login();
             return new ShapeResult(this, shape);
+        }
+
+        [Themed]
+        public ActionResult Login(LoginViewModel login)
+        {
+            // Validate the specified credentials
+            var user = _membershipService.ValidateUser(login.Email, login.Password);
+
+            // If no user was found, add a model error
+            if (user == null)
+            {
+                ModelState.AddModelError("Email", T("Incorrect username/password combination").ToString());
+            }
+
+            // If there are any model errors, redisplay the login form
+            if (!ModelState.IsValid)
+            {
+                var shape = _services.New.Checkout_Login(Login: login);
+                return new ShapeResult(this, shape);
+            }
+
+            // Create a forms ticket for the user
+            _authenticationService.SignIn(user, login.CreatePersistentCookie);
+
+            // Redirect to the next step
+            return RedirectToAction("SelectAddress");
         }
 
         [Themed]
