@@ -68,7 +68,7 @@ namespace Orchard.Webshop.Controllers
             return new ShapeResult(this, shape);
         }
 
-        [Themed]
+        [HttpPost, Themed]
         public ActionResult Login(LoginViewModel login)
         {
             // Validate the specified credentials
