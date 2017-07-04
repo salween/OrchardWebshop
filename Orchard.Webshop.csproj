@@ -73,6 +73,7 @@
     <Compile Include="Handlers\AddressPartHandler.cs" />
     <Compile Include="Handlers\CustomerPartHandler.cs" />
     <Compile Include="Handlers\ProductPartHandler.cs" />
+    <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Migrations.cs" />
     <Compile Include="Models\AddressPart.cs" />
     <Compile Include="Models\AddressPartRecord.cs" />
@@ -89,6 +90,8 @@
     <Compile Include="Services\ICustomerService.cs" />
     <Compile Include="Services\IShoppingCart.cs" />
     <Compile Include="Services\ShoppingCart.cs" />
+    <Compile Include="ViewModels\AddressesViewModel.cs" />
+    <Compile Include="ViewModels\AddressViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\SignupViewModel.cs" />
     <Compile Include="ViewModels\UpdateShoppingCartItemViewModel.cs" />
@@ -98,6 +101,7 @@
     <Content Include="Module.txt" />
     <Content Include="Scripts\shoppingcart.js" />
     <Content Include="Styles\common.css" />
+    <Content Include="Styles\Orchard.Webshop.Common.css" />
     <Content Include="Styles\shoppingcart.css" />
     <Content Include="Styles\shoppingcartwidget.css" />
   </ItemGroup>
@@ -129,8 +133,11 @@
     <None Include="Scripts\web.config" />
     <None Include="Styles\web.config" />
     <None Include="Views\Checkout.Login.cshtml" />
+    <None Include="Views\Checkout.SelectAddress.cshtml" />
     <None Include="Views\Checkout.Signup.cshtml" />
     <None Include="Views\Checkout.SignupOrLogin.cshtml" />
+    <None Include="Views\Checkout.Summary.cshtml" />
+    <None Include="Views\EditorTemplates\Address.cshtml" />
     <None Include="Views\EditorTemplates\Parts\Address.cshtml" />
     <None Include="Views\EditorTemplates\Parts\Customer.cshtml" />
     <None Include="Views\EditorTemplates\Parts\Product.cshtml" />

@@ -54,5 +54,19 @@ namespace Orchard.Webshop.Services
 
             return customerPart;
         }
+
+        public AddressPart GetAddress(int customerId, string addressType)
+        {
+            return _orchardServices.ContentManager.Query<AddressPart, AddressPartRecord>().Where(x => x.CustomerId == customerId && x.Type == addressType).List().FirstOrDefault();
+        }
+
+        public AddressPart CreateAddress(int customerId, string addressType)
+        {
+            return _orchardServices.ContentManager.Create<AddressPart>("Address", x =>
+            {
+                x.Type = addressType;
+                x.CustomerId = customerId;
+            });
+        }
     }
 }
