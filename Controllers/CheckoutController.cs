@@ -27,6 +27,7 @@ namespace Orchard.Webshop.Controllers
             _services = services;
             _customerService = customerService;
             _membershipService = membershipService;
+            T = NullLocalizer.Instance;
         }
 
         [Themed]
