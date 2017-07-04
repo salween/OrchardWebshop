@@ -36,6 +36,13 @@ namespace Orchard.Webshop.Controllers
             return new ShapeResult(this, _services.New.Checkout_SignupOrLogin());
         }
 
+        [Themed]
+        public ActionResult Signup()
+        {
+            var shape = _services.New.Checkout_Signup();
+            return new ShapeResult(this, shape);
+        }
+
         [HttpPost]
         public ActionResult Signup(SignupViewModel signup)
         {
