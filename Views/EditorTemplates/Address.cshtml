@@ -1,0 +1,31 @@
+﻿@model Orchard.Webshop.ViewModels.AddressViewModel
+
+<fieldset>
+    <legend>@ViewData.ModelMetadata.GetDisplayName()</legend>
+    <ul>
+        <li>
+            <div class="field-label">@Html.LabelFor(m => m.Name, T("Name"))</div>
+            <div class="field-editor">@Html.EditorFor(m => m.Name)</div>
+        </li>
+        <li>
+            <div class="field-label">@Html.LabelFor(m => m.AddressLine1, T("Address line 1"))</div>
+            <div class="field-editor">@Html.EditorFor(m => m.AddressLine1)</div>
+        </li>
+        <li>
+            <div class="field-label">@Html.LabelFor(m => m.AddressLine2, T("Address line 2"))</div>
+            <div class="field-editor">@Html.EditorFor(m => m.AddressLine2)</div>
+        </li>
+        <li>
+            <div class="field-label">@Html.LabelFor(m => m.Zipcode, T("Zipcode"))</div>
+            <div class="field-editor">@Html.EditorFor(m => m.Zipcode)</div>
+        </li>
+        <li>
+            <div class="field-label">@Html.LabelFor(m => m.City, T("City"))</div>
+            <div class="field-editor">@Html.EditorFor(m => m.City)</div>
+        </li>
+        <li>
+            <div class="field-label">@Html.LabelFor(m => m.Country, T("Country"))</div>
+            <div class="field-editor">@Html.EditorFor(m => m.Country)</div>
+        </li>
+    </ul>
+</fieldset>

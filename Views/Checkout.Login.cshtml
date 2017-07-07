@@ -1,0 +1,47 @@
+﻿@using Orchard.Webshop.ViewModels
+@{ 
+    var login = (LoginViewModel)Model.Login;
+
+    Style.Require("Orchard.Webshop.Common");
+}
+
+<h2>@T("Returning customer")</h2>
+<p>@T("Please login using the form below")</p>
+
+@Html.ValidationSummary()
+
+@using (Html.BeginFormAntiForgeryPost(Url.Action("Login", "Checkout", new { area = "Orchard.Webshop" })))
+{
+    <article class="form">
+        <fieldset>
+            <ul>
+                <li>
+                    <div class="field-label">@Html.LabelFor(m => login.Email, T("Email"))</div>
+                    <div class="field-editor">@Html.EditorFor(m => login.Email)</div>
+                </li>
+                <li>
+                    <div class="field-label">@Html.LabelFor(m => login.Password, T("Password"))</div>
+                    <div class="field-editor">@Html.EditorFor(m => login.Password)</div>
+                </li>
+            </ul>
+        </fieldset>
+
+        <fieldset>
+            <ul>
+                <li>
+                    <div class="checkbox-and-label">
+                        <div class="checkbox">@Html.CheckBoxFor(m => login.CreatePersistentCookie)</div>
+                        <div class="label">@Html.LabelFor(m => login.CreatePersistentCookie, T("Remember me next time"))</div>
+                    </div>
+                </li>
+            </ul>
+        </fieldset>
+
+        <footer class="commands">
+            <ul>
+                <li class="align left"><a href="#">@T("Cancel")</a></li>
+                <li class="align right"><button type="submit">@T("Next")</button></li>
+            </ul>
+        </footer>
+    </article>
+}

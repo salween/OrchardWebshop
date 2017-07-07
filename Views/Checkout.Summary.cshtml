@@ -1,0 +1,104 @@
+﻿@using Orchard.ContentManagement
+@using Orchard.Webshop.Models
+@{
+    Style.Require("Orchard.Webshop.Checkout.Summary");
+    var shoppingCart = Model.ShoppingCart;
+    var invoiceAddress = Model.InvoiceAddress;
+    var shippingAddress = Model.ShippingAddress;
+    var items = (IList<dynamic>)shoppingCart.ShopItems;
+    var subtotal = (decimal)shoppingCart.Subtotal;
+    var vat = (decimal)shoppingCart.Vat;
+    var total = (decimal)shoppingCart.Total;
+}
+@if (!items.Any())
+{
+    <p>You don't have any items in your shopping cart.</p>
+    <a class="button" href="#">Continue shopping</a>
+}
+else
+{
+
+    <article class="shoppingcart">
+        <h2>Review your order</h2>
+        <p>Please review the information below. Hit the Place Order button to proceed.</p>
+        <table>
+            <thead>
+                <tr>
+                    <td>Article</td>
+                    <td class="numeric">Unit Price</td>
+                    <td class="numeric">Quantity</td>
+                    <td class="numeric">Total Price</td>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < items.Count; i++)
+                {
+                    var item = items[i];
+                    var product = (ProductPart)item.Product;
+                    var contentItem = (ContentItem)item.ContentItem;
+                    var title = item.Title;
+                    var quantity = (int)item.Quantity;
+                    var unitPrice = product.UnitPrice;
+                    var totalPrice = quantity * unitPrice;
+                    <tr>
+                        <td>@title</td>
+                        <td class="numeric">@unitPrice.ToString("c")</td>
+                        <td class="numeric">@quantity</td>
+                        <td class="numeric">@totalPrice.ToString("c")</td>
+                    </tr>
+                }
+
+            </tbody>
+            <tfoot>
+                <tr class="separator"><td colspan="4">&nbsp;</td></tr>
+                <tr>
+                    <td class="numeric label" colspan="2">Subtotal:</td>
+                    <td class="numeric">@subtotal.ToString("c")</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="numeric label" colspan="2">VAT (19%):</td>
+                    <td class="numeric">@vat.ToString("c")</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="numeric label" colspan="3">Total:</td>
+                    <td class="numeric">@total.ToString("c")</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+    </article>
+
+    <article class="addresses form">
+        <div class="invoice-address">
+            <h2>Invoice Address</h2>
+            <ul class="address-fields">
+                <li>@invoiceAddress.Name.Value</li>
+                <li>@invoiceAddress.AddressLine1.Value</li>
+                <li>@invoiceAddress.AddressLine2.Value</li>
+                <li>@invoiceAddress.Zipcode.Value</li>
+                <li>@invoiceAddress.City.Value</li>
+                <li>@invoiceAddress.Country.Value</li>
+            </ul>
+        </div>
+        <div class="shipping-address">
+            <h2>Shipping Address</h2>
+            <ul class="address-fields">
+                <li>@shippingAddress.Name.Value</li>
+                <li>@shippingAddress.AddressLine1.Value</li>
+                <li>@shippingAddress.AddressLine2.Value</li>
+                <li>@shippingAddress.Zipcode.Value</li>
+                <li>@shippingAddress.City.Value</li>
+                <li>@shippingAddress.Country.Value</li>
+            </ul>
+        </div>
+    </article>
+
+    <article>
+        <div class="group">
+            <div class="align left"><a href="#">Cancel</a></div>
+            <div class="align right"><button type="submit" name="command" value="CreateOrder">Place Order</button></div>
+        </div>
+    </article>
+}

@@ -1,0 +1,61 @@
+﻿article.shoppingcart {
+    width: 100%;
+}
+
+    article.shoppingcart table {
+        width: 100%;
+    }
+
+    article.shoppingcart td {
+        padding: 7px 3px 4px 4px;
+        vertical-align: middle;
+    }
+
+    article.shoppingcart table thead td {
+        background: #f6f6f6;
+        font-weight: bold;
+    }
+
+    article.shoppingcart table tfoot tr.separator td {
+        border-bottom: 1px solid #ccc;
+    }
+
+    article.shoppingcart table tfoot td {
+        font-weight: bold;
+    }
+
+    article.shoppingcart footer {
+        margin-top: 20px;
+    }
+
+    article.shoppingcart td.numeric {
+        width: 75px;
+        text-align: right;
+    }
+
+article.addresses {
+    margin: 10px 0 10px 0;
+    padding: 0 40px 10px 20px;
+}
+
+    article.addresses:after {
+        clear: both;
+        height: 0;
+        content: ".";
+        display: block;
+        visibility: hidden;
+        zoom: 1;
+    }
+
+    article.addresses .invoice-address {
+        float: left;
+    }
+
+    article.addresses .shipping-address {
+        float: right;
+    }
+
+ul.address-fields {
+    margin: 0;
+    list-style: none;
+}

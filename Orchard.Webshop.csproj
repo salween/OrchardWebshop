@@ -30,8 +30,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,11 +63,90 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
+    <Compile Include="Drivers\AddressPartDriver.cs" />
+    <Compile Include="Drivers\CustomerPartDriver.cs" />
+    <Compile Include="Drivers\ProductPartDriver.cs" />
+    <Compile Include="Drivers\ShoppingCartWidgetPartDriver.cs" />
+    <Compile Include="Filters\ProductPartFilter.cs" />
+    <Compile Include="Handlers\AddressPartHandler.cs" />
+    <Compile Include="Handlers\CustomerPartHandler.cs" />
+    <Compile Include="Handlers\ProductPartHandler.cs" />
+    <Compile Include="Helpers\StringExtensions.cs" />
+    <Compile Include="Migrations.cs" />
+    <Compile Include="Models\AddressPart.cs" />
+    <Compile Include="Models\AddressPartRecord.cs" />
+    <Compile Include="Models\CustomerPart.cs" />
+    <Compile Include="Models\CustomerPartRecord.cs" />
+    <Compile Include="Models\ProductPart.cs" />
+    <Compile Include="Models\ProductPartRecord.cs" />
+    <Compile Include="Models\ProductQuantity.cs" />
+    <Compile Include="Models\ShoppingCartItem.cs" />
+    <Compile Include="Models\ShoppingCartWidgetPart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceManifest.cs" />
+    <Compile Include="Services\CustomerService.cs" />
+    <Compile Include="Services\ICustomerService.cs" />
+    <Compile Include="Services\IShoppingCart.cs" />
+    <Compile Include="Services\ShoppingCart.cs" />
+    <Compile Include="ViewModels\AddressesViewModel.cs" />
+    <Compile Include="ViewModels\AddressViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\SignupViewModel.cs" />
+    <Compile Include="ViewModels\UpdateShoppingCartItemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\sprites.png" />
     <Content Include="Module.txt" />
+    <Content Include="Scripts\shoppingcart.js" />
+    <Content Include="Styles\common.css" />
+    <Content Include="Styles\Orchard.Webshop.Common.css" />
+    <Content Include="Styles\shoppingcart.css" />
+    <Content Include="Styles\shoppingcartwidget.css" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Orchard\Orchard.Framework.csproj">
+      <Project>{2d1d92bb-4555-4cbe-8d0e-63563d6ce4c6}</Project>
+      <Name>Orchard.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Orchard.Core.csproj">
+      <Project>{9916839c-39fc-4ceb-a5af-89ca7e87119f}</Project>
+      <Name>Orchard.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Projections\Orchard.Projections.csproj">
+      <Project>{5531e894-d259-45a3-aa61-26dbe720c1ce}</Project>
+      <Name>Orchard.Projections</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orchard.Users\Orchard.Users.csproj">
+      <Project>{79AED36E-ABD0-4747-93D3-8722B042454B}</Project>
+      <Name>Orchard.Users</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="Images\web.config" />
+    <None Include="Placement.info" />
+    <None Include="Scripts\web.config" />
+    <None Include="Styles\web.config" />
+    <None Include="Views\Checkout.Login.cshtml" />
+    <None Include="Views\Checkout.SelectAddress.cshtml" />
+    <None Include="Views\Checkout.Signup.cshtml" />
+    <None Include="Views\Checkout.SignupOrLogin.cshtml" />
+    <None Include="Views\Checkout.Summary.cshtml" />
+    <None Include="Views\EditorTemplates\Address.cshtml" />
+    <None Include="Views\EditorTemplates\Parts\Address.cshtml" />
+    <None Include="Views\EditorTemplates\Parts\Customer.cshtml" />
+    <None Include="Views\EditorTemplates\Parts\Product.cshtml" />
+    <None Include="Views\Parts\Product.AddButton.cshtml" />
+    <None Include="Views\Parts\Product.cshtml" />
+    <None Include="Views\Parts\ShoppingCartWidget.cshtml" />
+    <None Include="Views\ShoppingCart.cshtml" />
+    <None Include="web.config" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,41 @@
+﻿article.shoppingcart {
+    width: 500px;
+}
+
+article.shoppingcart table {
+    width: 100%;
+}
+
+article.shoppingcart td {
+    padding: 7px 3px 4px 4px;
+}
+
+article.shoppingcart table thead td {
+    background: #f6f6f6;
+    font-weight: bold;
+}
+
+article.shoppingcart table tfoot tr.separator td {
+    border-bottom: 1px solid #ccc;
+}
+
+article.shoppingcart table tfoot td {
+    font-weight: bold;
+}
+
+article.shoppingcart footer {
+    margin-top: 20px;
+}
+
+article.shoppingcart td.numeric {
+    width: 75px;
+    text-align: right;
+}
+
+article.shoppingcart td.numeric input {
+    width: 50px;
+}
+
+article.shoppingcart td.update {
+    text-align: right;
+}

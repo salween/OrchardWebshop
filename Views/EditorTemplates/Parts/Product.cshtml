@@ -1,0 +1,20 @@
+﻿@using System.Web.Mvc.Html
+@model  Orchard.Webshop.Models.ProductPart
+
+<fieldset>
+    <legend>Product Fields</legend>
+
+    <div class="editor-label">@Html.LabelFor(x => x.Sku)</div>
+    <div class="editor-field">
+        @Html.EditorFor(x => x.Sku)
+        @Html.ValidationMessageFor(x => x.Sku)
+    </div>
+    <div class="hint">Enter the Stock Keeping Unit</div>
+
+    <div class="editor-label">@Html.LabelFor(x => x.Price)</div>
+    <div class="editor-field">
+        @Html.EditorFor(x => x.Price)
+        @Html.ValidationMessageFor(x => x.Price)
+    </div>
+    <div class="hint">Enter the sales price per unit</div>
+</fieldset>
